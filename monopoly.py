@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import numpy as np
 from numpy import linalg as la
 import matplotlib.pyplot as plt
@@ -5,7 +7,7 @@ import matplotlib.animation as anim
 
 # NOTE Written for Python3, Numpy 1.16.3, & Matplotlib 3.0.3
 
-rolls = 80
+final_roll = 80
 
 def jump_to(A, f, t, p):
     ''' Add a transition to transition matrix A from state(s) f to state t with probability p.
@@ -94,7 +96,7 @@ if __name__ == '__main__':
     A = transition_matrix()
 
     # Run animation
-    animate(A, p0, rolls, delay=50, limit=True)
+    animate(A, p0, final_roll, delay=50, limit=True)
 
     # Check probability sum
     print('Sum of probabilities: ' + str(np.around(np.sum(p0), decimals=8)))
