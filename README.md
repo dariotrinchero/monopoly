@@ -32,6 +32,11 @@ The number of turns simulated may be changed simply be changing the global varia
 
 All functions are well-documented, and the code is logically divided and commented where necessary. This should make understanding and modifying the code straightforward.
 
+## Other Versions
+
+The directory `old` contains an older version of the script, written in MATLAB (for version
+R2017b). The script was converted to Python and Numpy for accessibility (since MATLAB is proprietary).
+
 ## Contributing
 
 Pull requests are welcome - in fact, encouraged.
