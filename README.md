@@ -9,6 +9,10 @@ The script was written for, and tested on, **Python 3.5.2**, **Numpy 1.16.3**, a
 pip3 install --user --upgrade numpy
 pip3 install --user --upgrade matplotlib
 ```
+Then run with Python 3, or simply using
+```bash
+./monopoly.py
+```
 
 On execution, it should produce an animated plot with title counting the number of rolls. Upon closing the plot, the script will output the total probability and exit.
 
