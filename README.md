@@ -16,7 +16,7 @@ After turn 60 (or the turn given by `finalFrame` - see *Modifying Output* sectio
 
 ### Adding & Modifying Transitions
 
-The main function `monopoly` contains a function `jumpTo(from, to, prob)`. Once the initial transition matrix has been constructed (based on dice rolls alone), this function is used to add possible transitions (jumps) from one tile to another with a given probability. These are added based on the official *Monopoly* rules, and may include such things as a "Go to Jail" square, or "Chance" cards which send the player to another tile. The order in which these jumps are added matters, in that all possible transitions **to** any given tile should be established before adding a transition **from** that tile.
+The main function `monopoly` contains a function `jumpTo(from, to, prob)`. Once the initial transition matrix has been constructed (based on dice rolls alone), this function is used to add possible transitions (jumps) from one tile to another with a given probability. These are added based on the official *Monopoly* rules, and may include such things as a "Go to Jail" square, or "Chance" cards which send the player to another tile. The order in which these jumps are added matters, in that all possible transitions **to** any given tile should be established before adding a transition **from** that tile. As such, the jumps from the *Chance* tiles are added before the jumps from the *Community Chest* tiles, since one of the 16 *Chance* cards (if drawn on one of the 3 *Chance* tiles) may send the player (back 3 spaces) to a *Community Chest* tile.
 
 ### Modifying Output
 
