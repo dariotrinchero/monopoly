@@ -1,10 +1,11 @@
 import numpy as np
+from numpy import linalg as la
 import matplotlib.pyplot as plt
+import matplotlib.animation as anim
 
 # NOTE Written for Python3, Numpy 1.16.3, & Matplotlib 3.0.3
 
-# Global parameters
-final_frame = 60
+rolls = 80
 
 def jump_to(A, f, t, p):
     ''' Add a transition to transition matrix A from state(s) f to state t with probability p.
@@ -59,40 +60,42 @@ def transition_matrix():
     add_jumps(A)
     return A
 
+def animate(A, p0, rolls, delay=50, limit=True):
+    ''' Animate evolution of the probability distribution p0 for given number of rolls (transitions)
+    and transition matrix A. If limit is True, also show limiting probability distribution (obtained
+    as normalized eigenvector of A for eigenvalue 1) after animation completes. '''
+    fig = plt.figure()
+    line, = plt.plot(np.arange(40), p0, 'k.-')
+
+    plt.title('Rolls: 0')
+    plt.xlabel('Position')
+    plt.ylabel('Probability')
+    plt.xlim(-1, 40)
+    plt.ylim(0, 0.1)
+    plt.minorticks_on()
+    plt.grid(True, which='both')
+
+    def update(frame):
+        nonlocal A, p0, line, limit
+        line.set_data(np.arange(40), p0)
+        plt.title('Rolls: ' + str(frame))
+        if frame > 0: p0[:] = A.dot(p0) # p0[:] ensures external array is changed
+
+        if frame == rolls and limit:
+            v = np.real(la.eig(A)[1][:, 0])
+            plt.plot(v / np.sum(v), 'ko', fillstyle='none', markersize=8)
+
+    ani = anim.FuncAnimation(fig, update, rolls + 1, interval=delay, blit=False, repeat=False)
+    plt.show()
+
 if __name__ == '__main__':
-    # Initial probability & roll transition matrix
+    # Initialize p0 and A
     p0 = np.block([[np.array([[1]])], [np.zeros((39, 1))]])
     A = transition_matrix()
 
-'''
-    # Displaying game
-    fig = figure
-    frame(p0, 0)
-    pause
-    for roll = 0:final_frame
-        if ~ishandle(fig), break end
-        frame(p0, roll)
-        p0 = A * p0
+    # Run animation
+    animate(A, p0, rolls, delay=50, limit=True)
 
-    # Check probability sum and eigenvector
-    format long; fprintf('Sum of probabilities: %g\n', sum(p0));
+    # Check probability sum
+    print('Sum of probabilities: ' + str(np.around(np.sum(p0), decimals=8)))
 
-    [S, ~] = eig(A);
-    if ishandle(fig)
-        hold on;
-        plot(S(:, 1)/sum(S(:, 1)), 'k.');
-        hold off;
-
-def frame(p0, turn):
-    # Shows frame of distribution
-    plot(p0, 'k-');
-
-    hold on;
-    scatter(1:40, p0, 70, linspace(1, 2, length(p0)), 'filled', 's');
-    hold off;
-
-    title(sprintf('Turn %g', turn));
-    xlabel('Position'); ylabel('Probability');
-    axis([0 41 0 0.1]); grid on; drawnow;
-    pause(0.016);
-'''

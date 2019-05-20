@@ -10,7 +10,7 @@ The script was written for, and tested on, MATLAB version R2017b. On execution, 
 
 The plot displayed by the script represents the probability of finding any given player on a specific tile, after a certain number of turns have been taken by that player. The probability is shown on the vertical axis, for each of the tiles on the horizontal axis. The tiles are numbered from 1 (corresponding to the "Go" tile) clockwise around the board (in the direction of play) up until tile 40 (*Boardwalk*). The probability distribution starts at turn 0 (before any rolls), at which time the player has a 100% chance of being on the "Go" tile.
 
-After turn 60 (or the turn given by `finalFrame` - see *Modifying Output* section below), the simulation will cease, and black dots will be overlayed onto the probability distribution. These black dots show the *limiting distribution* (as the turn count tends to infinity), obtained one of the (normalized) eigenvectors of the transition matrix. Finally, the total sum under the distribution will be output, as a consistency check (of course, this should simply be 1).
+After turn 60 (or the turn given by `finalFrame` - see *Modifying Output* section below), the simulation will cease, and black dots will be overlayed onto the probability distribution. These black dots show the *limiting distribution* (as the turn count tends to infinity), obtained as the (normalized) eigenvector of the transition matrix corresponding to eigenvalue 1. Finally, the total sum under the distribution will be output, as a consistency check (of course, this should simply be 1).
 
 ## Modifying the Script
 
