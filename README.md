@@ -4,7 +4,13 @@ Simulates the movement of players around the board for a game of *US Standard 20
 
 ## Running the Script
 
-The script was written for, and tested on, Python 3.5.2, Numpy 1.16.3, and Matplotlib 3.0.3. On execution, it should produce an animated plot with title counting the number of rolls. Upon closing the plot, the script will output the total probability and exit.
+The script was written for, and tested on, **Python 3.5.2**, **Numpy 1.16.3**, and **Matplotlib 3.0.3**. To ensure correct functionality, update Numpy and Matplotlib before running:
+```bash
+pip3 install --user --upgrade numpy
+pip3 install --user --upgrade matplotlib
+```
+
+On execution, it should produce an animated plot with title counting the number of rolls. Upon closing the plot, the script will output the total probability and exit.
 
 ## Interpreting the Output
 
