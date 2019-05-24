@@ -18,6 +18,8 @@ On execution, it should produce an animated plot with title counting the number 
 
 ## Interpreting the Output
 
+![Plot](screenshots/plot.png)
+
 The plot displayed by the script represents the probability of finding any given player on a specific tile, after a certain number of rolls have been made by that player. The probability is shown on the vertical axis, for each of the tiles on the horizontal axis. The tiles are numbered from 0 (corresponding to the "Go" tile) clockwise around the board (in the direction of play) up until tile 39 (*Boardwalk*). The probability distribution starts before any rolls have been made, at which time the player has a 100% chance of being on the "Go" tile.
 
 After turn 80 (or the turn given by `final_roll` - see *Modifying Output* section below), the simulation will cease, and black circles will be overlayed onto the probability distribution. These circles show the *limiting distribution* (as the number of rolls tends to infinity), obtained as the (normalized) eigenvector of the transition matrix corresponding to eigenvalue 1. Finally, upon closing the plot, the sum under the probability distribution will be output, as a consistency check (of course, this should be 1).
